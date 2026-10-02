@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carlos Ruiz Brito</title>
+<meta name="description" content="Senior Delivery Manager · Mexico City. Software, data and infrastructure programs, AI-enabled delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: executive portfolio dashboard — navy masthead, KPI strip, scaled career timeline with drill-down, delivery flow, case tabs */
+:root{
+  --bg:#f5f7fb; --surface:#ffffff; --fg:#17203a; --muted:#5a6479; --line:#dde3ee;
+  --navy:#0f1b33; --on-navy:#e6ecf8; --on-navy-muted:#a9b7d6;
+  --accent:#2f5bea; --accent-soft:#e8eefe; --accent-fg:#ffffff;
+  --amber:#c9780f; --teal:#0e8f7e;
+  --bar1:#8a96ab; --bar2:#6c7a93; --bar3:#56657f;
+  --display:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1222; --surface:#141c30; --fg:#e4e9f4; --muted:#9aa6bf; --line:#26314a;
+  --navy:#070c18; --on-navy:#e6ecf8; --on-navy-muted:#9fb0d6;
+  --accent:#6f93ff; --accent-soft:#1c2a52; --accent-fg:#0c1222;
+  --amber:#f0a23c; --teal:#35c2ad;
+  --bar1:#4c5873; --bar2:#5a6886; --bar3:#6a7998; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1222; --surface:#141c30; --fg:#e4e9f4; --muted:#9aa6bf; --line:#26314a;
+  --navy:#070c18; --on-navy:#e6ecf8; --on-navy-muted:#9fb0d6;
+  --accent:#6f93ff; --accent-soft:#1c2a52; --accent-fg:#0c1222;
+  --amber:#f0a23c; --teal:#35c2ad;
+  --bar1:#4c5873; --bar2:#5a6886; --bar3:#6a7998; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+h2{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--muted);margin:0 0 18px;display:flex;align-items:center;gap:12px}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+section{padding-block:36px 8px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* Masthead */
+.mast{background:var(--navy);color:var(--on-navy);border-left:8px solid var(--accent)}
+.mast .wrap{padding-block:44px 40px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end}
+.mast .eyebrow{color:var(--on-navy-muted)}
+.mast h1{font-family:var(--display);font-weight:700;font-size:clamp(2.1rem,5.4vw,3.4rem);line-height:1.04;margin:10px 0 14px;text-wrap:balance}
+.mast h1 span{color:var(--on-navy-muted)}
+.thesis{font-family:var(--display);font-weight:600;font-size:clamp(1.05rem,2.2vw,1.3rem);max-width:34em;margin:0;color:var(--on-navy);text-wrap:balance}
+.contact{display:flex;flex-direction:column;gap:8px;min-width:0}
+.contact a,.contact button{display:inline-flex;align-items:center;gap:10px;font:inherit;font-size:.9rem;color:var(--on-navy);text-decoration:none;background:transparent;border:1px solid color-mix(in srgb,var(--on-navy) 25%,transparent);border-radius:6px;padding:8px 12px;cursor:pointer;text-align:left}
+.contact a:hover,.contact button:hover{border-color:var(--on-navy-muted)}
+.contact .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--on-navy-muted);min-width:4.2em}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:-22px;position:relative}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 14px}
+.kpi .n{font-family:var(--display);font-weight:700;font-size:2rem;line-height:1;color:var(--fg);font-variant-numeric:tabular-nums}
+.kpi .n small{font-family:var(--body);font-size:.85rem;font-weight:600;color:var(--accent);margin-left:2px}
+.kpi .t{font-size:.8rem;color:var(--muted);margin-top:8px;line-height:1.35}
+
+/* Timeline */
+.tl-scroll{overflow-x:auto;padding-bottom:4px}
+.tl{position:relative;min-width:680px;height:78px}
+.tl button{position:absolute;top:0;height:40px;border:0;border-radius:6px;color:#fff;font:600 .74rem var(--body);padding:0 4px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+.tl button:hover{transform:translateY(-2px)}
+.tl button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--accent)}
+.tl .axis{position:absolute;top:50px;left:0;right:0;height:1px;background:var(--line)}
+.tl .yr{position:absolute;top:56px;font-family:var(--mono);font-size:.7rem;color:var(--muted);transform:translateX(-50%)}
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-top:10px;display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:24px}
+.detail .when{font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.06em}
+.detail h3{font-family:var(--display);font-size:1.35rem;line-height:1.2;margin:6px 0 6px;text-wrap:balance}
+.detail .org{font-size:.85rem;color:var(--muted)}
+.detail ul{margin:0;padding-left:1.1em;display:grid;gap:8px}
+.detail li b{color:var(--fg)}
+.hint{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+
+/* Flow */
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.step{background:var(--navy);color:var(--on-navy);padding:16px 22px 16px 26px;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%,14px 50%)}
+.step:first-child{clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%);padding-left:18px}
+.step:nth-child(2){background:color-mix(in srgb,var(--navy) 80%,var(--accent))}
+.step:nth-child(3){background:color-mix(in srgb,var(--navy) 60%,var(--accent))}
+.step:nth-child(4){background:color-mix(in srgb,var(--navy) 40%,var(--accent))}
+.step:nth-child(5){background:color-mix(in srgb,var(--navy) 15%,var(--accent))}
+.step .k{font-family:var(--mono);font-size:.68rem;color:var(--on-navy-muted)}
+.step b{display:block;font-size:1rem;margin:2px 0 4px}
+.step p{margin:0;font-size:.8rem;color:var(--on-navy-muted);line-height:1.4}
+.ia{margin-top:10px;border:1.5px dashed var(--accent);border-radius:8px;padding:12px 16px;display:flex;gap:14px;align-items:flex-start;background:var(--accent-soft)}
+.ia .tag{font-family:var(--mono);font-size:.72rem;background:var(--accent);color:var(--accent-fg);padding:4px 8px;border-radius:4px;flex:none;margin-top:1px}
+.ia p{margin:0;font-size:.9rem;min-width:0}
+
+/* Cases */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.tabs button{font:500 .85rem var(--body);border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:8px 14px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px}
+.case h3{font-family:var(--display);font-size:1.4rem;margin:0 0 4px;text-wrap:balance}
+.case .sub{color:var(--muted);font-size:.85rem;margin-bottom:20px}
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.s3{border-top:3px solid var(--c);padding-top:12px}
+.s3 .l{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.s3 p{margin:6px 0 0;font-size:.92rem}
+
+/* Region */
+.region{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.country{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}
+.country .c{font-weight:600;display:flex;align-items:center;gap:8px}
+.country .c i{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.country p{margin:8px 0 0;font-size:.82rem;color:var(--muted)}
+
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.82rem;background:var(--surface)}
+.chip.ai{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.chip.st{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.cols h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:500}
+
+footer{margin-top:44px;border-top:1px solid var(--line)}
+footer .wrap{padding-block:18px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:.78rem;color:var(--muted)}
+
+@media (max-width:860px){
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpis .kpi:first-child{grid-column:1/-1}
+  .flow{grid-template-columns:minmax(0,1fr)}
+  .step,.step:first-child{clip-path:none;border-radius:6px;padding:14px 16px}
+  .region{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .detail,.cols,.steps3{grid-template-columns:minmax(0,1fr)}
+  .mast .wrap{grid-template-columns:minmax(0,1fr)}
+}
+
+.proj{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.proj article{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.proj .pt{font-weight:600}
+.proj .pm{font-family:var(--mono);font-size:.7rem;color:var(--accent)}
+.proj p{margin:0;font-size:.84rem;color:var(--muted);flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tags span{font-size:.7rem;border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+.recs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.recs figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
+.recs blockquote{margin:0;font-family:var(--display);font-weight:600;font-size:1.12rem;line-height:1.3;text-wrap:balance}
+.recs figcaption{font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.recs figcaption b{display:block;color:var(--fg);font-size:.82rem}
+.teach{background:var(--navy);color:var(--on-navy);border-radius:10px;padding:20px}
+.teach .n{font-family:var(--display);font-weight:700;font-size:2rem;line-height:1}
+.teach .n small{font-family:var(--body);font-size:.85rem;color:var(--on-navy-muted)}
+.teach h3{font-family:var(--display);margin:10px 0 6px;font-size:1.2rem}
+.teach p{margin:0;color:var(--on-navy-muted);font-size:.9rem}
+.posts{display:grid;gap:10px}
+.posts p{margin:0;padding:10px 14px;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 8px 8px 0;font-size:.95rem}
+.more{display:inline-block;margin-top:12px;font-weight:600;font-size:.88rem}
+@media (max-width:860px){.proj{grid-template-columns:repeat(2,minmax(0,1fr))}.recs{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.proj{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.topbar{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:18px}
+.tbtn{font:600 .78rem var(--mono);letter-spacing:.08em;color:var(--on-navy);background:transparent;border:1px solid color-mix(in srgb,var(--on-navy) 30%,transparent);border-radius:6px;padding:7px 12px;cursor:pointer;text-decoration:none}
+.tbtn:hover{border-color:var(--on-navy-muted)}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);text-align:center;font-size:.9rem;padding:10px 14px}
+[hidden]{display:none!important}
+.phone-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tbtn.wa{background:#25d366;border-color:#25d366;color:#06291a}
+.ph{font-family:var(--mono);color:var(--on-navy)}
+.scale{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.scale span{font-size:.82rem;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.scale b{color:var(--accent)}
+.domains{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.domain{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:8px;padding:14px}
+.domain h3{margin:0 0 6px;font-size:1rem}
+.domain p{margin:0;font-size:.82rem;color:var(--muted)}
+.vt{display:grid;gap:10px}
+.vt details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0}
+.vt summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:9rem minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:16px 20px}
+.vt summary::-webkit-details-marker{display:none}
+.vt summary .when{font-family:var(--mono);font-size:.74rem;color:var(--accent)}
+.vt summary .role{font-family:var(--display);font-weight:700;font-size:1.12rem}
+.vt summary .org{display:block;font-family:var(--body);font-weight:400;font-size:.84rem;color:var(--muted);margin-top:2px}
+.vt summary .chev{font-family:var(--mono);color:var(--muted);font-size:.8rem}
+.vt details[open] .chev{transform:rotate(90deg)}
+.vt ul{margin:0;padding:0 20px 18px calc(9rem + 34px);display:grid;gap:7px}
+.ai-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.ai-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ai-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.ai-card h3{margin:0;font-size:1rem}
+.ai-card p{margin:0;font-size:.86rem;color:var(--muted);flex:1}
+.ai-card .by{font-family:var(--mono);font-size:.7rem;color:var(--accent)}
+.rule{margin-top:12px;font-size:.88rem;border-left:3px solid var(--teal);padding:8px 12px;background:var(--surface);border-radius:0 8px 8px 0}
+.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.metric{background:var(--navy);color:var(--on-navy);border-radius:10px;padding:16px}
+.metric .k{font-family:var(--mono);font-size:.68rem;color:var(--on-navy-muted);letter-spacing:.12em;text-transform:uppercase}
+.metric b{display:block;font-size:1.05rem;margin:4px 0}
+.metric p{margin:0;font-size:.8rem;color:var(--on-navy-muted)}
+.board-note{margin:12px 0 0;font-size:.9rem}
+.stackgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.domains{grid-template-columns:repeat(2,minmax(0,1fr))}.ai-grid,.stackgrid{grid-template-columns:minmax(0,1fr)}.board{grid-template-columns:repeat(2,minmax(0,1fr))}.vt summary{grid-template-columns:minmax(0,1fr) auto}.vt summary .when{grid-column:1/-1}.vt ul{padding:0 20px 18px 36px}}
+@media (max-width:480px){.domains,.board{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<div data-lang="es">
+<header class="mast"><div class="wrap"><div>
+<div class="eyebrow">Senior Delivery Manager · Ciudad de México</div><h1>Carlos Alberto <span>Ruiz Brito</span></h1><p class="thesis">Convierto programas complejos de software, datos e infraestructura en entregas predecibles, medibles y aceleradas con IA.</p></div>
+<div class="contact">
+<div class="topbar"><button type="button" class="tbtn lang-toggle" data-to="en">EN</button></div>
+<a href="https://www.linkedin.com/in/carlosruizb" target="_blank" rel="noopener"><span class="k">LINKEDIN</span>linkedin.com/in/carlosruizb</a>
+<button type="button" class="copy-mail" data-ok="Correo copiado"><span class="k">CORREO</span><span class="mail">carlos.ruizb@hotmail.com</span></button>
+<div class="phone-row"><button type="button" class="tbtn show-phone">Llamar</button><span class="ph" hidden></span><a class="tbtn wa" href="#" data-wa target="_blank" rel="noopener">WhatsApp</a></div>
+<a class="tbtn primary" href="cv.html">Ver mi CV</a>
+<div class="phone-row"><a class="tbtn" href="CV_Carlos_Ruiz_Brito_ES_WEB.pdf" download>Descargar CV ES</a><a class="tbtn" href="CV_Carlos_Ruiz_Brito_EN_WEB.pdf" download>Descargar CV EN</a></div>
+<span class="eyebrow copy-msg" style="color:var(--on-navy-muted);min-height:1.2em"></span></div></div></header>
+<main class="wrap"><div class="kpis">
+<div class="kpi"><div class="n">15<small>años</small></div><div class="t">en tecnología; liderando entrega desde 2015</div></div>
+<div class="kpi"><div class="n">8M<small>+ USD</small></div><div class="t">portafolio administrado hoy</div></div>
+<div class="kpi"><div class="n">20<small>+</small></div><div class="t">personas que lidero hoy</div></div>
+<div class="kpi"><div class="n">40<small>+</small></div><div class="t">personas en programas que dirigí como PM</div></div>
+<div class="kpi"><div class="n">4<small></small></div><div class="t">clientes simultáneos en mi etapa de PM SR</div></div>
+</div><div class="scale"><span>Contratos <b>precio fijo</b>, <b>Staff Augmentation</b> y <b>Time &amp; Material</b></span><span>Portafolios con <b>5+ flujos de valor</b>: análisis, diseño, desarrollo, pruebas e implementación</span><span>Desde México: <b>equipos y clientes en varios países</b> (MX, AR, CL, CO, EC, ES)</span></div>
+<section><h2>Qué gestiono</h2><div class="domains"><div class="domain"><h3>Desarrollo de software</h3><p>Salesforce Commerce Cloud, apps móviles React Native, APIs y plataformas con IA.</p></div><div class="domain"><h3>Datos y BI</h3><p>Migración del BI de Privalia, Activity Log en Banorte y campañas con analítica.</p></div><div class="domain"><h3>Infraestructura y DR</h3><p>Programas multi-sitio de centro de datos, HCI y Disaster Recovery 24x7.</p></div><div class="domain"><h3>Banca y regulatorio</h3><p>Base24, SAP Security para 10,000+ usuarios y sistemas apegados a Banxico.</p></div><div class="domain"><h3>Transformación digital</h3><p>Portafolios multipaís con varios flujos de valor y equipos multidisciplinarios.</p></div></div></section>
+<section><h2>Trayectoria 2012 – hoy</h2><div class="vt">
+<details open><summary><span class="when">Oct 2025 – hoy</span><span class="role">Senior Delivery Manager<span class="org">Framework · Infraestructura y transformación digital · sector minero</span></span><span class="chev">›</span></summary><ul><li>Lidero a <b>más de 20 personas</b> y un portafolio de <b>más de USD 8M</b>: dos programas simultáneos y 32 sitios.</li><li><b>100%</b> de cumplimiento en entrega de hardware y <b>3%</b> de desviación contra el plan (12 ubicaciones, 20 instancias Principal/DR).</li><li>Activación del <b>sitio de DR como principal</b> ante una contingencia eléctrica real.</li><li>RTO por criticidad de negocio y <b>RPO de 2 h</b> estandarizados en los programas de DR.</li><li>Construí con IA la plataforma PYGP para gestionar riesgos, incidencias, viáticos y dashboard ejecutivo.</li></ul></details>
+<details open><summary><span class="when">Jun 2020 – Oct 2025</span><span class="role">Consultor TI SR → Project Manager → Project Manager SR<span class="org">Globant · Santander, Scotiabank Caribe, Farmacity, Grupo Tagle, Rotter y Krauss, UDLA, Grupo Axo, Privalia</span></span><span class="chev">›</span></summary><ul><li>Dirigí como PM programas de <b>más de 40 personas</b>, hasta <b>4 clientes simultáneos</b> y portafolios con <b>más de 5 flujos de valor</b>, con equipos y clientes en varios países.</li><li>Uno de los primeros proyectos de <b>Salesforce Commerce Cloud</b> de Globant en LATAM; su modelo se replicó en otras cuentas retail.</li><li><b>+25% NPS</b> en la Super App de Santander México y <b>+15% de productividad</b> comercial en Grupo Tagle.</li><li><b>−20% en tiempos de entrega</b> regionales con adopción ágil.</li><li>App React Native de Farmacity con AI Pods (CODA) y migración del BI de Privalia de España a México.</li></ul></details>
+<details><summary><span class="when">Jul 2019 – Abr 2020</span><span class="role">Project Manager SAP<span class="org">Melius Services · AB InBev (México – Colombia)</span></span><span class="chev">›</span></summary><ul><li><b>SAP Security para más de 10,000 usuarios</b> en varios países, con diseño seguro de roles y preparación para auditoría.</li></ul></details>
+<details><summary><span class="when">Sep 2018 – Mar 2019</span><span class="role">Project Manager<span class="org">Involve Talent · CitiBanamex</span></span><span class="chev">›</span></summary><ul><li>Automatización y cumplimiento regulatorio (Banxico) bajo PMI y Scrum, con ciclo completo de pruebas.</li></ul></details>
+<details><summary><span class="when">Feb 2015 – Sep 2018</span><span class="role">Analista de Sistemas SR → Project Manager<span class="org">Banorte · vía Praxis, Global Hitss y Grupo Eisei</span></span><span class="chev">›</span></summary><ul><li><b>5×</b> en ventas de pólizas en un mes con NBA/NBO en cajeros.</li><li><b>12,400 pólizas en una semana</b> (casi 8× lo estimado).</li><li>Primera campaña de crédito de nómina vía ATM (2016).</li></ul></details>
+<details><summary><span class="when">2012 – 2014</span><span class="role">Analista de Sistemas de Negocio · Analista y Desarrollador<span class="org">Sistec Red 21 · Health Digital Systems · Merrick & Company · Knowledge on Demand</span></span><span class="chev">›</span></summary><ul><li>Modelado de procesos para desarrollar aplicaciones de automatización con UML, RUP y Scrum.</li></ul></details>
+</div></section>
+<section><h2>IA aplicada a la entrega</h2><div class="ai-tools"><span class="chip ai">Claude</span><span class="chip ai">ChatGPT</span><span class="chip ai">Antigravity</span></div><div class="ai-grid">
+<div class="ai-card"><span class="by">Antigravity · ChatGPT</span><h3>PYGP: plataforma de gestión de delivery</h3><p>Diseñé y construí con IA una plataforma web sobre Google Apps Script con más de 15 módulos: riesgos, incidencias con escalamiento a fabricante, viáticos, certificaciones, dashboard ejecutivo y mapa de sitios, con acceso por rol.</p></div>
+<div class="ai-card"><span class="by">Antigravity · ChatGPT</span><h3>QA automatizado</h3><p>Suite de 18 pruebas E2E con PowerShell y Edge headless que corre en cada compilación, y una matriz de 200 casos de prueba para planear QA.</p></div>
+<div class="ai-card"><span class="by">Claude</span><h3>Reportes y gobierno</h3><p>Reportes de estatus con prompt chaining, decks de habilitación de DR estandarizados en 15 láminas y paquetes de gobierno (RACI, interesados, comunicación).</p></div>
+</div><p class="rule"><b>Mi criterio:</b> la IA propone y yo valido. El semáforo, las decisiones y lo que se entrega al cliente pasan por revisión humana, y en material público los clientes van anonimizados.</p></section>
+<section><h2>Mi tablero semanal</h2><div class="board"><div class="metric"><div class="k">Presupuesto</div><b>Real contra plan</b><p>Consumo y pronóstico al cierre.</p></div><div class="metric"><div class="k">% de desviación</div><b>Alcance y fechas</b><p>Desviación contra la línea base.</p></div><div class="metric"><div class="k">Aceptación del cliente</div><b>Entregables</b><p>Lo aceptado, lo pendiente y lo observado.</p></div><div class="metric"><div class="k">Riesgos y problemas</div><b>Con responsable</b><p>Cada uno con dueño, fecha y escalamiento.</p></div></div><p class="board-note">Lo reporto cada semana a dirección y al cliente con Jira, Azure DevOps, Power BI, Excel, PowerPoint y herramientas propias.</p></section>
+<section><h2>Casos destacados</h2><div class="tabs" role="tablist">
+<button type="button" role="tab" data-case="es0" aria-selected="true">Super App Santander</button>
+<button type="button" role="tab" data-case="es1" aria-selected="false">Commerce Cloud en LATAM</button>
+<button type="button" role="tab" data-case="es2" aria-selected="false">Continuidad ante contingencia</button>
+</div>
+<div class="case" role="tabpanel" id="case-es0"><h3>Modernización de la Super App de Santander México</h3><div class="sub">Globant · banca móvil</div><div class="steps3"><div class="s3" style="--c:var(--amber)"><div class="l">Contexto</div><p>Banca móvil de uno de los principales bancos del país.</p></div><div class="s3" style="--c:var(--accent)"><div class="l">Acción</div><p>Dirigí el programa de modernización de la Super App.</p></div><div class="s3" style="--c:var(--teal)"><div class="l">Resultado</div><p>NPS +25% y una experiencia móvil mejorada.</p></div></div></div>
+<div class="case" role="tabpanel" id="case-es1" hidden><h3>Salesforce Commerce Cloud para Rotter y Krauss</h3><div class="sub">Globant · retail · Chile</div><div class="steps3"><div class="s3" style="--c:var(--amber)"><div class="l">Contexto</div><p>Uno de los primeros proyectos de Commerce Cloud de Globant en LATAM.</p></div><div class="s3" style="--c:var(--accent)"><div class="l">Acción</div><p>Lideré la implementación de punta a punta.</p></div><div class="s3" style="--c:var(--teal)"><div class="l">Resultado</div><p>El modelo de entrega se replicó en otras cuentas retail de la región.</p></div></div></div>
+<div class="case" role="tabpanel" id="case-es2" hidden><h3>Continuidad operativa ante una contingencia real</h3><div class="sub">Grupo minero · Disaster Recovery · 24x7</div><div class="steps3"><div class="s3" style="--c:var(--amber)"><div class="l">Contexto</div><p>Contingencia eléctrica en el sitio de producción.</p></div><div class="s3" style="--c:var(--accent)"><div class="l">Acción</div><p>Activé personalmente, junto con un integrante del equipo, el sitio de DR como principal mediante Planned Migration + Reprotect (UltraVR).</p></div><div class="s3" style="--c:var(--teal)"><div class="l">Resultado</div><p>El sitio de DR operó como principal, con retorno planificado al sitio original.</p></div></div></div>
+</section>
+<section><h2>Proyectos</h2><div class="proj"><article><div class="pt">Plataforma PYGP</div><div class="pm">Iniciativa propia</div><p>Gestión de delivery con 15+ módulos, acceso por rol y 18 pruebas E2E automatizadas.</p><div class="tags"><span>Apps Script</span><span>IA</span><span>QA E2E</span></div></article><article><div class="pt">Programa DR multi-sitio</div><div class="pm">Sector minero · 2025 – hoy</div><p>Infraestructura de DR en 12 ubicaciones con RPO de 2 h y operación 24x7.</p><div class="tags"><span>Huawei DR</span><span>HCI</span></div></article><article><div class="pt">CRM estudiantil</div><div class="pm">UDLA Ecuador · desde 2021</div><p>CRM para la atención y gestión de estudiantes.</p><div class="tags"><span>Salesforce</span></div></article><article><div class="pt">Migración BI Privalia</div><div class="pm">Grupo Axo · 2021</div><p>Migración y desacoplamiento del BI de España a México.</p><div class="tags"><span>BI</span><span>Migración</span></div></article><article><div class="pt">Migración de core bancario</div><div class="pm">Scotiabank Caribe · 2020 – 2021</div><p>Migración de plataformas core con procesos batch en Linux y bases de datos.</p><div class="tags"><span>Linux</span><span>Bases de datos</span></div></article><article><div class="pt">Modelos de seguridad SAP</div><div class="pm">AB InBev · 2019 – 2020</div><p>Roles SAP de México a Colombia para más de 10,000 usuarios.</p><div class="tags"><span>SAP Security</span></div></article><article><div class="pt">DBTT</div><div class="pm">CitiBanamex · 2018 – 2019</div><p>Transferencia transaccional apegada a regulaciones de Banxico.</p><div class="tags"><span>Regulatorio</span><span>PMI</span></div></article><article><div class="pt">Venta Multicanal</div><div class="pm">Banorte · 2017 – 2018</div><p>Contratación de productos desde cualquier canal electrónico.</p><div class="tags"><span>BPM</span><span>Java</span><span>BPEL</span></div></article></div></section>
+<section><h2>Reconocimientos de clientes</h2><div class="recs"><figure><blockquote>“The Privalia platform was successfully moved to its new home in Mexico.”</blockquote><figcaption><b>Globant · portafolio EMEA</b>Felicitación al equipo de Globant en Grupo Axo por la migración de Privalia (2021).</figcaption></figure><figure><blockquote>12,400 pólizas en una semana, casi 8 veces lo estimado.</blockquote><figcaption><b>Banorte · Programa de Transformación</b>Resultado de la solución NBA/NBO en cajeros automáticos (2016).</figcaption></figure><figure><blockquote>Primera campaña de Contratación de Crédito de Nómina vía ATM.</blockquote><figcaption><b>Banorte · Entérate, 14 de octubre de 2016</b>Implementada con NBA, CRM analítico y el orquestador de ventas multicanal.</figcaption></figure></div></section>
+<section><h2>Docencia y comunidad</h2><div class="cols"><div class="teach"><div class="n"><small>desde </small>2018</div><h3>Docente de Tecnologías de la Información</h3><p>Universidad Insurgentes · Licenciatura en Informática. Más de 8 años formando profesionales de TI en paralelo a mi carrera.</p></div><div><div class="posts"><p>“No te contrataron para gestionar tareas. Te contrataron para generar impacto.”</p><p>“Un buen PM no espera certeza. Decide con contexto.”</p><p>“Velocidad no es hacer más. Es decidir mejor, antes.”</p></div><a class="more" href="https://www.linkedin.com/in/carlosruizb/recent-activity/all/" target="_blank" rel="noopener">Leer #DeliveryConCharlyBrito en LinkedIn · 5,600+ seguidores</a></div></div></section>
+<section><h2>Certificaciones, formación y stack</h2><div class="cols"><div><h4>Certificaciones</h4><div class="chips"><span class="chip ai">Empowering Portfolio Leadership with AI · SAFe</span><span class="chip ai">Empowering SPCs with AI · SAFe</span><span class="chip st">SAFe® 6 POPM · vigente a 2027</span><span class="chip st">Certified ScrumMaster® · 2022</span><span class="chip ">SAFe Alignment Events for the ART</span><span class="chip ">SAFe Release Train Engineer Role</span><span class="chip ">SAFe Team and ART Kanban</span><span class="chip ">SAFe Inspect &amp; Adapt</span><span class="chip ">SAFe 6.0 Upgrade</span><span class="chip ">ITIL Foundations</span><span class="chip ">Management 3.0</span></div><h4 style="margin-top:20px">Formación e idiomas</h4><div class="chips"><span class="chip">MBA en Capital Humano · UNITEC · título 2026</span><span class="chip">Ing. en Sistemas Computacionales · 2014</span><span class="chip">Español nativo</span><span class="chip">Inglés intermedio–profesional</span></div></div><div><h4>Stack</h4><div class="stackgrid" style="grid-template-columns:minmax(0,1fr)"><div><b style="font-size:.85rem">Software y datos</b><p style="margin:4px 0 0;font-size:.85rem;color:var(--muted)">Salesforce · React Native · Android · iOS · APIs Java · Google Apps Script · SAP Security · Base24</p></div><div><b style="font-size:.85rem">IA y gestión</b><p style="margin:4px 0 0;font-size:.85rem;color:var(--muted)">Claude · ChatGPT · Antigravity · Jira · Azure DevOps · Confluence · Power BI</p></div><div><b style="font-size:.85rem">Infraestructura y marcos</b><p style="margin:4px 0 0;font-size:.85rem;color:var(--muted)">Huawei DR / HCI · Scrum · SAFe · Kanban · PMI · ITIL</p></div></div></div></div></section>
+</main><footer><div class="wrap"><span>© Carlos Alberto Ruiz Brito · 01/10/2026</span><span>Contenido de uso personal · Prohibida su redistribución</span></div></footer></div>
+<div data-lang="en" hidden>
+<header class="mast"><div class="wrap"><div>
+<div class="eyebrow">Senior Delivery Manager · Mexico City</div><h1>Carlos Alberto <span>Ruiz Brito</span></h1><p class="thesis">I turn complex software, data and infrastructure programs into predictable, measurable delivery, accelerated with AI.</p></div>
+<div class="contact">
+<div class="topbar"><button type="button" class="tbtn lang-toggle" data-to="es">ES</button></div>
+<a href="https://www.linkedin.com/in/carlosruizb" target="_blank" rel="noopener"><span class="k">LINKEDIN</span>linkedin.com/in/carlosruizb</a>
+<button type="button" class="copy-mail" data-ok="Email copied"><span class="k">EMAIL</span><span class="mail">carlos.ruizb@hotmail.com</span></button>
+<div class="phone-row"><button type="button" class="tbtn show-phone">Call</button><span class="ph" hidden></span><a class="tbtn wa" href="#" data-wa target="_blank" rel="noopener">WhatsApp</a></div>
+<a class="tbtn primary" href="cv.html">View my CV</a>
+<div class="phone-row"><a class="tbtn" href="CV_Carlos_Ruiz_Brito_ES_WEB.pdf" download>Download CV ES</a><a class="tbtn" href="CV_Carlos_Ruiz_Brito_EN_WEB.pdf" download>Download CV EN</a></div>
+<span class="eyebrow copy-msg" style="color:var(--on-navy-muted);min-height:1.2em"></span></div></div></header>
+<main class="wrap"><div class="kpis">
+<div class="kpi"><div class="n">15<small>years</small></div><div class="t">in technology; leading delivery since 2015</div></div>
+<div class="kpi"><div class="n">8M<small>+ USD</small></div><div class="t">portfolio managed today</div></div>
+<div class="kpi"><div class="n">20<small>+</small></div><div class="t">people I lead today</div></div>
+<div class="kpi"><div class="n">40<small>+</small></div><div class="t">people in programs I led as PM</div></div>
+<div class="kpi"><div class="n">4<small></small></div><div class="t">clients at a time as Senior PM</div></div>
+</div><div class="scale"><span><b>Fixed-price</b>, <b>staff augmentation</b> and <b>time &amp; material</b> contracts</span><span>Portfolios with <b>5+ value streams</b>: analysis, design, development, testing and deployment</span><span>From Mexico: <b>teams and clients in several countries</b> (MX, AR, CL, CO, EC, ES)</span></div>
+<section><h2>What I manage</h2><div class="domains"><div class="domain"><h3>Software development</h3><p>Salesforce Commerce Cloud, React Native mobile apps, APIs and AI-built platforms.</p></div><div class="domain"><h3>Data and BI</h3><p>Privalia BI migration, Banorte Activity Log and analytics-driven campaigns.</p></div><div class="domain"><h3>Infrastructure and DR</h3><p>Multi-site data center, HCI and 24x7 Disaster Recovery programs.</p></div><div class="domain"><h3>Banking and regulatory</h3><p>Base24, SAP Security for 10,000+ users and Banxico-compliant systems.</p></div><div class="domain"><h3>Digital transformation</h3><p>Multi-country portfolios with several value streams and cross-functional teams.</p></div></div></section>
+<section><h2>Career 2012 – today</h2><div class="vt">
+<details open><summary><span class="when">Oct 2025 – today</span><span class="role">Senior Delivery Manager<span class="org">Framework · Infrastructure and digital transformation · mining sector</span></span><span class="chev">›</span></summary><ul><li>Lead <b>20+ people</b> and a <b>USD 8M+</b> portfolio: two concurrent programs and 32 sites.</li><li><b>100%</b> hardware delivery compliance and <b>3%</b> deviation from plan (12 locations, 20 Primary/DR instances).</li><li>Activated the <b>DR site as primary</b> during a real power contingency.</li><li>Business-criticality RTO and a <b>2-hour RPO</b> standardized across DR programs.</li><li>Built the PYGP platform with AI to manage risks, incidents, travel expenses and an executive dashboard.</li></ul></details>
+<details open><summary><span class="when">Jun 2020 – Oct 2025</span><span class="role">Senior IT Consultant → Project Manager → Senior Project Manager<span class="org">Globant · Santander, Scotiabank Caribbean, Farmacity, Grupo Tagle, Rotter y Krauss, UDLA, Grupo Axo, Privalia</span></span><span class="chev">›</span></summary><ul><li>Led as PM programs of <b>40+ people</b>, up to <b>4 clients at a time</b> and portfolios with <b>5+ value streams</b>, with teams and clients in several countries.</li><li>One of Globant's first <b>Salesforce Commerce Cloud</b> projects in LATAM; its model was replicated in other retail accounts.</li><li><b>+25% NPS</b> for Santander Mexico's Super App and <b>+15% sales productivity</b> at Grupo Tagle.</li><li><b>−20% regional delivery times</b> through Agile adoption.</li><li>Farmacity React Native app with AI Pods (CODA) and Privalia BI migration from Spain to Mexico.</li></ul></details>
+<details><summary><span class="when">Jul 2019 – Apr 2020</span><span class="role">SAP Project Manager<span class="org">Melius Services · AB InBev (Mexico – Colombia)</span></span><span class="chev">›</span></summary><ul><li><b>SAP Security for 10,000+ users</b> across several countries, with secure role design and audit readiness.</li></ul></details>
+<details><summary><span class="when">Sep 2018 – Mar 2019</span><span class="role">Project Manager<span class="org">Involve Talent · CitiBanamex</span></span><span class="chev">›</span></summary><ul><li>Automation and regulatory compliance (Banxico) under PMI and Scrum, with the full testing cycle.</li></ul></details>
+<details><summary><span class="when">Feb 2015 – Sep 2018</span><span class="role">Senior Systems Analyst → Project Manager<span class="org">Banorte · through Praxis, Global Hitss and Grupo Eisei</span></span><span class="chev">›</span></summary><ul><li><b>5x</b> insurance policy sales in one month with NBA/NBO on ATMs.</li><li><b>12,400 policies in one week</b> (nearly 8x forecast).</li><li>First payroll credit campaign via ATM (2016).</li></ul></details>
+<details><summary><span class="when">2012 – 2014</span><span class="role">Business Systems Analyst · Systems Analyst & Developer<span class="org">Sistec Red 21 · Health Digital Systems · Merrick & Company · Knowledge on Demand</span></span><span class="chev">›</span></summary><ul><li>Process modeling to build automation applications with UML, RUP and Scrum.</li></ul></details>
+</div></section>
+<section><h2>AI applied to delivery</h2><div class="ai-tools"><span class="chip ai">Claude</span><span class="chip ai">ChatGPT</span><span class="chip ai">Antigravity</span></div><div class="ai-grid">
+<div class="ai-card"><span class="by">Antigravity · ChatGPT</span><h3>PYGP: delivery management platform</h3><p>Designed and built with AI a web platform on Google Apps Script with 15+ modules: risks, incidents with vendor escalation, travel expenses, certifications, executive dashboard and site map, with role-based access.</p></div>
+<div class="ai-card"><span class="by">Antigravity · ChatGPT</span><h3>Automated QA</h3><p>An 18-test E2E suite with PowerShell and headless Edge that runs on every build, plus a 200-case test matrix to plan QA.</p></div>
+<div class="ai-card"><span class="by">Claude</span><h3>Reporting and governance</h3><p>Prompt-chained status reports, DR enablement decks standardized to 15 slides, and governance packages (RACI, stakeholders, communication).</p></div>
+</div><p class="rule"><b>My rule:</b> AI proposes, I validate. RAG status, decisions and anything delivered to a client go through human review, and clients are anonymized in public material.</p></section>
+<section><h2>My weekly dashboard</h2><div class="board"><div class="metric"><div class="k">Budget</div><b>Actual vs. plan</b><p>Burn and forecast at completion.</p></div><div class="metric"><div class="k">% deviation</div><b>Scope and dates</b><p>Deviation from the baseline.</p></div><div class="metric"><div class="k">Client acceptance</div><b>Deliverables</b><p>Accepted, pending and with observations.</p></div><div class="metric"><div class="k">Risks and issues</div><b>With an owner</b><p>Each one with owner, date and escalation path.</p></div></div><p class="board-note">I report it every week to leadership and the client with Jira, Azure DevOps, Power BI, Excel, PowerPoint and tools I built.</p></section>
+<section><h2>Featured cases</h2><div class="tabs" role="tablist">
+<button type="button" role="tab" data-case="en0" aria-selected="true">Santander Super App</button>
+<button type="button" role="tab" data-case="en1" aria-selected="false">Commerce Cloud in LATAM</button>
+<button type="button" role="tab" data-case="en2" aria-selected="false">Continuity under contingency</button>
+</div>
+<div class="case" role="tabpanel" id="case-en0"><h3>Santander Mexico Super App modernization</h3><div class="sub">Globant · mobile banking</div><div class="steps3"><div class="s3" style="--c:var(--amber)"><div class="l">Context</div><p>Mobile banking for one of the country's leading banks.</p></div><div class="s3" style="--c:var(--accent)"><div class="l">Action</div><p>I led the Super App modernization program.</p></div><div class="s3" style="--c:var(--teal)"><div class="l">Result</div><p>NPS +25% and an improved mobile experience.</p></div></div></div>
+<div class="case" role="tabpanel" id="case-en1" hidden><h3>Salesforce Commerce Cloud for Rotter y Krauss</h3><div class="sub">Globant · retail · Chile</div><div class="steps3"><div class="s3" style="--c:var(--amber)"><div class="l">Context</div><p>One of Globant's first Commerce Cloud projects in LATAM.</p></div><div class="s3" style="--c:var(--accent)"><div class="l">Action</div><p>I led the implementation end to end.</p></div><div class="s3" style="--c:var(--teal)"><div class="l">Result</div><p>The delivery model was replicated in other retail accounts in the region.</p></div></div></div>
+<div class="case" role="tabpanel" id="case-en2" hidden><h3>Operational continuity during a real contingency</h3><div class="sub">Mining group · Disaster Recovery · 24x7</div><div class="steps3"><div class="s3" style="--c:var(--amber)"><div class="l">Context</div><p>Power contingency at the production site.</p></div><div class="s3" style="--c:var(--accent)"><div class="l">Action</div><p>Personally activated, with a team member, the DR site as primary through Planned Migration + Reprotect (UltraVR).</p></div><div class="s3" style="--c:var(--teal)"><div class="l">Result</div><p>The DR site ran as primary, with a planned return to the original site.</p></div></div></div>
+</section>
+<section><h2>Projects</h2><div class="proj"><article><div class="pt">PYGP platform</div><div class="pm">Own initiative</div><p>Delivery management with 15+ modules, role-based access and 18 automated E2E tests.</p><div class="tags"><span>Apps Script</span><span>AI</span><span>E2E QA</span></div></article><article><div class="pt">Multi-site DR program</div><div class="pm">Mining sector · 2025 – today</div><p>DR infrastructure across 12 locations with a 2-hour RPO and 24x7 operations.</p><div class="tags"><span>Huawei DR</span><span>HCI</span></div></article><article><div class="pt">Student CRM</div><div class="pm">UDLA Ecuador · since 2021</div><p>CRM for student service and management.</p><div class="tags"><span>Salesforce</span></div></article><article><div class="pt">Privalia BI migration</div><div class="pm">Grupo Axo · 2021</div><p>BI migration and decoupling from Spain to Mexico.</p><div class="tags"><span>BI</span><span>Migration</span></div></article><article><div class="pt">Core banking migration</div><div class="pm">Scotiabank Caribbean · 2020 – 2021</div><p>Core platform migration with Linux batch processes and databases.</p><div class="tags"><span>Linux</span><span>Databases</span></div></article><article><div class="pt">SAP security models</div><div class="pm">AB InBev · 2019 – 2020</div><p>SAP roles from Mexico to Colombia for 10,000+ users.</p><div class="tags"><span>SAP Security</span></div></article><article><div class="pt">DBTT</div><div class="pm">CitiBanamex · 2018 – 2019</div><p>Transactional transfer system compliant with Banxico regulations.</p><div class="tags"><span>Regulatory</span><span>PMI</span></div></article><article><div class="pt">Multichannel Sales</div><div class="pm">Banorte · 2017 – 2018</div><p>Product sign-up from any electronic channel.</p><div class="tags"><span>BPM</span><span>Java</span><span>BPEL</span></div></article></div></section>
+<section><h2>Client recognition</h2><div class="recs"><figure><blockquote>“The Privalia platform was successfully moved to its new home in Mexico.”</blockquote><figcaption><b>Globant · EMEA portfolio</b>Recognition of the Globant team at Grupo Axo for the Privalia migration (2021).</figcaption></figure><figure><blockquote>12,400 policies in one week, nearly 8 times the forecast.</blockquote><figcaption><b>Banorte · Transformation Program</b>Result of the NBA/NBO solution on ATMs (2016).</figcaption></figure><figure><blockquote>First payroll credit campaign via ATM.</blockquote><figcaption><b>Banorte · internal newsletter, October 14, 2016</b>Delivered with NBA, analytical CRM and the multichannel sales orchestrator.</figcaption></figure></div></section>
+<section><h2>Teaching and community</h2><div class="cols"><div class="teach"><div class="n"><small>since </small>2018</div><h3>Information Technology Lecturer</h3><p>Universidad Insurgentes · B.Sc. in Computer Science. 8+ years training IT professionals alongside my career.</p></div><div><div class="posts"><p>“You were not hired to manage tasks. You were hired to create impact.”</p><p>“A good PM does not wait for certainty. They decide with context.”</p><p>“Speed is not doing more. It is deciding better, earlier.”</p></div><a class="more" href="https://www.linkedin.com/in/carlosruizb/recent-activity/all/" target="_blank" rel="noopener">Read #DeliveryConCharlyBrito on LinkedIn · 5,600+ followers</a></div></div></section>
+<section><h2>Certifications, education and stack</h2><div class="cols"><div><h4>Certifications</h4><div class="chips"><span class="chip ai">Empowering Portfolio Leadership with AI · SAFe</span><span class="chip ai">Empowering SPCs with AI · SAFe</span><span class="chip st">SAFe® 6 POPM · valid through 2027</span><span class="chip st">Certified ScrumMaster® · 2022</span><span class="chip ">SAFe Alignment Events for the ART</span><span class="chip ">SAFe Release Train Engineer Role</span><span class="chip ">SAFe Team and ART Kanban</span><span class="chip ">SAFe Inspect &amp; Adapt</span><span class="chip ">SAFe 6.0 Upgrade</span><span class="chip ">ITIL Foundations</span><span class="chip ">Management 3.0</span></div><h4 style="margin-top:20px">Education and languages</h4><div class="chips"><span class="chip">MBA in Human Capital · UNITEC · degree 2026</span><span class="chip">B.Sc. Computer Systems Engineering · 2014</span><span class="chip">Spanish (native)</span><span class="chip">English (intermediate–professional)</span></div></div><div><h4>Stack</h4><div class="stackgrid" style="grid-template-columns:minmax(0,1fr)"><div><b style="font-size:.85rem">Software and data</b><p style="margin:4px 0 0;font-size:.85rem;color:var(--muted)">Salesforce · React Native · Android · iOS · Java APIs · Google Apps Script · SAP Security · Base24</p></div><div><b style="font-size:.85rem">AI and management</b><p style="margin:4px 0 0;font-size:.85rem;color:var(--muted)">Claude · ChatGPT · Antigravity · Jira · Azure DevOps · Confluence · Power BI</p></div><div><b style="font-size:.85rem">Infrastructure and frameworks</b><p style="margin:4px 0 0;font-size:.85rem;color:var(--muted)">Huawei DR / HCI · Scrum · SAFe · Kanban · PMI · ITIL</p></div></div></div></div></section>
+</main><footer><div class="wrap"><span>© Carlos Alberto Ruiz Brito · 01/10/2026</span><span>Personal use · Redistribution prohibited</span></div></footer></div>
+<script>
+(function(){
+  function setLang(l){
+    document.querySelectorAll('[data-lang]').forEach(function(d){d.hidden=d.getAttribute('data-lang')!==l});
+    document.documentElement.lang=l;
+    try{localStorage.setItem('crb-lang',l)}catch(e){}
+  }
+  var pp=['52','55','3165','3625'];
+  document.querySelectorAll('.show-phone').forEach(function(b){b.addEventListener('click',function(){if(window.matchMedia&&matchMedia('(pointer:coarse)').matches){window.location.href='tel:+'+pp.join('');return;}var ph=b.parentNode.querySelector('.ph');ph.textContent='+'+pp[0]+' '+pp[1]+' '+pp[2]+' '+pp[3];ph.hidden=false;b.hidden=true})});
+  document.querySelectorAll('[data-wa]').forEach(function(a){a.href='https://wa.me/'+pp.join('')});
+  var saved=null; try{saved=localStorage.getItem('crb-lang')}catch(e){}
+  if(saved==='en'||saved==='es') setLang(saved);
+  document.querySelectorAll('.lang-toggle').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-to'))})});
+  document.querySelectorAll('[data-case]').forEach(function(b){b.addEventListener('click',function(){
+    var id=b.getAttribute('data-case'), L=id.slice(0,2);
+    document.querySelectorAll('[data-case^="'+L+'"]').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false')});
+    document.querySelectorAll('[id^="case-'+L+'"]').forEach(function(p){p.hidden=p.id!=='case-'+id});
+  })});
+  document.querySelectorAll('.copy-mail').forEach(function(btn){btn.addEventListener('click',function(){
+    var m=btn.querySelector('.mail'), msg=btn.parentNode.querySelector('.copy-msg'), ok=btn.getAttribute('data-ok');
+    function sel(){try{var r=document.createRange();r.selectNodeContents(m);var s=getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}}
+    try{navigator.clipboard.writeText(m.textContent).then(function(){msg.textContent=ok},sel)}catch(e){sel()}
+  })});
+})();
+</script>
+</body>
+</html>
